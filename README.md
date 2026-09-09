@@ -141,31 +141,31 @@ Repeat each experiment for every source domain and each reported seed. Office-Ho
 
 ### Shared-prior control
 
-The paper's AA/AB/BA/BB analysis uses two disjoint, matched 12-descriptor banks. It fixes the effective suppression coefficient at 0.5 so bank pairing is the only changed factor. The default `default-29` main configuration remains unchanged.
+The paper's AA/AB/BA/BB analysis uses two disjoint, matched 12-descriptor banks. It fixes the effective suppression coefficient at 0.5 so bank pairing is the only changed factor. The default `default-29` main configuration remains unchanged. The main result uses learnable suppression initialized at an effective coefficient of 0.5; the fixed-coefficient Mixed-29 control in Table 4(a) reports 83.39 on Office-Home and 37.94 on TerraIncognita.
 
 ```bash
 # AA: shared bank A
 python run_train.py --dataset officehome --root ./OfficeHomeDataset --source Art \
   --seed 3 --appearance-bank mixed-12 --suppression-bank mixed-12 \
-  --fixed-alpha-eff 0.5
+  --fixed-alpha-eff 0.5 --epochs 30
 
 # AB: appearance A, suppression B
 python run_train.py --dataset officehome --root ./OfficeHomeDataset --source Art \
   --seed 3 --appearance-bank mixed-12 --suppression-bank alt-mixed-12 \
-  --fixed-alpha-eff 0.5
+  --fixed-alpha-eff 0.5 --epochs 30
 
 # BA: appearance B, suppression A
 python run_train.py --dataset officehome --root ./OfficeHomeDataset --source Art \
   --seed 3 --appearance-bank alt-mixed-12 --suppression-bank mixed-12 \
-  --fixed-alpha-eff 0.5
+  --fixed-alpha-eff 0.5 --epochs 30
 
 # BB: shared bank B
 python run_train.py --dataset officehome --root ./OfficeHomeDataset --source Art \
   --seed 3 --appearance-bank alt-mixed-12 --suppression-bank alt-mixed-12 \
-  --fixed-alpha-eff 0.5
+  --fixed-alpha-eff 0.5 --epochs 30
 ```
 
-To reproduce Table 4, run all four settings on Office-Home and TerraIncognita, alternating every domain as source and using seeds `3`, `5201314`, and `30319`. Each checkpoint stores both complete descriptor lists.
+To reproduce the AA/AB/BA/BB rows in Table 4(b), run all four settings on Office-Home and TerraIncognita, alternating every domain as source and using seeds `3`, `5201314`, and `30319`. Each checkpoint stores both complete descriptor lists.
 
 ## Evaluation
 
