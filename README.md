@@ -2,8 +2,6 @@
 
 Official research implementation of **Text-Anchored Style Invariance Learning for Single-Source Domain Generalization**.
 
-**Code:** https://github.com/roomtoor/TASIL
-
 TASIL constructs a style subspace from textual style descriptors encoded by a frozen CLIP model, suppresses style-aligned components in visual representations, and trains with weak, strong, and text-guided appearance feature views. The implementation follows a strict single-source domain generalization (SDG) protocol: only one labeled source domain is used for training, and held-out target domains are used only for final evaluation.
 
 ## Release scope
